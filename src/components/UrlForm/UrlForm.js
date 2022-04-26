@@ -17,10 +17,8 @@ class UrlForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const newItem = { title: this.state.title, long_url: this.state.urlToShorten, short_url: `http://localhost:3001/useshorturl/${this.props.arrayLength +1}`, id: this.props.arrayLength +1 }
-      console.log(newItem)
-    this.props.addItem(newItem)
-    postUrls(newItem)
+    postUrls({ title: this.state.title, long_url: this.state.urlToShorten })
+    .then(data => this.props.addItem(data))
     this.clearInputs();
   }
 

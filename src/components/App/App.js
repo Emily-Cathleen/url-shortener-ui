@@ -26,7 +26,7 @@ export class App extends Component {
       <main className="App">
         <header>
           <h1>URL Shortener</h1>
-          <UrlForm addItem={this.addItem} arrayLength={this.state.urls.length}/>
+          <UrlForm addItem={this.addItem} />
         </header>
 
         <UrlContainer urls={this.state.urls}/>
