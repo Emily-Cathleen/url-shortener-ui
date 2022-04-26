@@ -24,7 +24,6 @@ describe("Main page flow", () => {
 
   it("As a user, I should be able to fill out the form and see the words typed real-time", () => {
     cy.visit("http://localhost:3000")
-
       .get("form")
       .should("be.visible")
       .get("input.title-input")
@@ -40,8 +39,7 @@ describe("Main page flow", () => {
 
 
 it("As a user, I should be able to fill out the form, click submit, and view my rendered card", () => {
-  cy.visit("http://localhost:3000")
-  .intercept("POST", "http://localhost:3001/api/v1/urls", {
+  cy.intercept("POST", "http://localhost:3001/api/v1/urls", {
     statusCode: 201,
     body: {
       id: 1,
@@ -50,6 +48,7 @@ it("As a user, I should be able to fill out the form, click submit, and view my 
       title: "Puppy",
     },
   })
+  cy.visit("http://localhost:3000")
   .get("form")
   .should("be.visible")
   .get("input.title-input")
@@ -63,11 +62,10 @@ it("As a user, I should be able to fill out the form, click submit, and view my 
   .get("div.url")
   .last()
   .contains("https://en.wikipedia.org/wiki/Puppy");
-});
+})
 
 it("As a user, see a shorthand URL", () => {
-  cy.visit("http://localhost:3000")
-  .intercept("POST", "http://localhost:3001/api/v1/urls", {
+  cy.intercept("POST", "http://localhost:3001/api/v1/urls", {
     statusCode: 201,
     body: {
       id: 1,
@@ -76,6 +74,7 @@ it("As a user, see a shorthand URL", () => {
       title: "Puppy",
     },
   })
+  cy.visit("http://localhost:3000")
   .get("form")
   .should("be.visible")
   .get("input.title-input")
