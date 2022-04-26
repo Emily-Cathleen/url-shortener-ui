@@ -22,7 +22,19 @@ describe("Main page flow", () => {
     .should("be.visible")
   })
 
-  
+  it("As a user, I should be able to fill out the form and see the words typed real-time", () => {
+    cy.visit("http://localhost:3000")
+    .get("form")
+    .should("be.visible")
+    .get("input.title-input")
+    .type("CYPRESS TEST")
+    .get("input.title-input")
+    .should("have.value", "CYPRESS TEST")
+    .get("input.url-input")
+    .type("https://en.wikipedia.org/wiki/Puppy")
+    .get("input.url-input")
+    .should("have.value", "https://en.wikipedia.org/wiki/Puppy")
+  })
 
 
 
